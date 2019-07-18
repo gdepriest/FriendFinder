@@ -49,7 +49,7 @@
 
                             <div class="form-group">
                                 <label for="image">Link to Image</label>
-                                <input type="text" class="form-control" id="phone" required>
+                                <input type="text" class="form-control" id="photo" required>
                             </div>
 
                             <hr>
@@ -153,7 +153,7 @@
                             </div>
 
                             <div class="form-group">
-                                <h4><span class="fas fa-thermometer-three-quarters"></i>></span> Question 7</h4>
+                                <h4><span class="fas fa-thermometer-three-quarters"></i></span> Question 7</h4>
                                 <h5>Social status means a lot to me.</h5>
                                 <div class="row">
                                     <select class="chosen-select" name="q7" id="q7">
@@ -165,18 +165,48 @@
                                     </select>    
                                 </div>
                             </div>
-    
-    
-    
-    
-    
 
+                            <div class="form-group">
+                                <h4><span class="far fa-caret-square-up"></i></span> Question 8</h4>
+                                <h5>People have the capacity to change.</h5>
+                                <div class="row">
+                                    <select class="chosen-select" name="q8" id="q8">
+                                        <option value="1">1 - Strongly Disagree</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5 - Strongly Agree</option>
+                                    </select>    
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <h4><span class="fas fa-paw"></i></span> Question 9</h4>
+                                <h5>I love animals.</h5>
+                                <div class="row">
+                                    <select class="chosen-select" name="q9" id="q9">
+                                        <option value="1">1 - Strongly Disagree</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5 - Strongly Agree</option>
+                                    </select>    
+                                </div>
+                            </div>
 
-
-
-
-
+                            <div class="form-group">
+                                <h4><span class="far fa-check-square"></i></span> Question 10</h4>
+                                <h5>Success has nothing to do with luck.</h5>
+                                <div class="row">
+                                    <select class="chosen-select" name="q10" id="q10">
+                                        <option value="1">1 - Strongly Disagree</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5 - Strongly Agree</option>
+                                    </select>    
+                                </div>
+                            </div>
 
                         </form>
                         <br>
@@ -187,39 +217,49 @@
                     </div>
                 </div>
 
-                <script type="text/javascript">
-
-                    $("#add-btn").on("click", function (event) {
-                        event.preventDefault();
-                        var newReservation = {
-                            name: $("#name").val().trim(),
-                            phone: $("#phone").val().trim(),
-                            email: $("#email").val().trim(),
-                            uniqueID: $("#uniqueID").val().trim()
-                        };
-
-                        console.log(newReservation);
-
-                        $.post("/api/tables", newReservation)
-                            .then(function (data) {
-                                console.log(data);
-                                alert("Adding reservation...");
-                            });
-
-                        $("#name").val("");
-                        $("#phone").val("");
-                        $("#email").val("");
-                        $("#uniqueID").val("");
-
-
-                    });
-                </script>
+                
 
 
 
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+
+        $("#add-btn").on("click", function (event) {
+            event.preventDefault();
+            var newFriend = {
+                name: $("#name").val().trim(),
+                photo: $("#photo").val().trim(),
+                scores: [
+                    $("#q1").val(),
+                    $("#q2").val(),
+                    $("#q3").val(),
+                    $("#q4").val(),
+                    $("#q5").val(),
+                    $("#q6").val(),
+                    $("#q7").val(),
+                    $("#q8").val(),
+                    $("#q9").val(),
+                    $("#q10").val()
+                ]
+            };
+
+            console.log(newFriend);
+
+            $.post("/api/friends", newFriend)
+                .then(function (data) {
+                    console.log(data);
+                    alert("Finding a friend...");
+                });
+
+            $("#name").val("");
+            $("#photo").val("");
+            $("#q1").empty;
+            
+
+        });
+    </script>
 </body>
 
 </html>
